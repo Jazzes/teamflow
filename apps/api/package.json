@@ -1,0 +1,16 @@
+{
+  "name": "@teamflow/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Presentation Layer: REST API на Express",
+  "type": "module",
+  "main": "./dist/server.js",
+  "dependencies": {
+    "@teamflow/bll": "^0.1.0",
+    "@teamflow/dal": "^0.1.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
+  }
+}

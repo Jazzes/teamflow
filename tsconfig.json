@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/dal" },
+    { "path": "packages/bll" },
+    { "path": "apps/api" }
+  ]
+}

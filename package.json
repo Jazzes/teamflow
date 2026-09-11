@@ -1,0 +1,29 @@
+{
+  "name": "teamflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TeamFlow: система учёта задач команды разработки",
+  "type": "module",
+  "workspaces": [
+    "packages/dal",
+    "packages/bll",
+    "apps/api"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "test": "tsc -b && vitest run",
+    "db:generate": "npm run db:generate -w @teamflow/dal",
+    "db:migrate": "tsc -b && node --env-file=.env packages/dal/dist/migrate.js",
+    "db:seed": "tsc -b && node --env-file=.env packages/dal/dist/seed.js",
+    "start": "tsc -b && node --env-file=.env apps/api/dist/server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  }
+}

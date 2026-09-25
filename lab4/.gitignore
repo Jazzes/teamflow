@@ -11,3 +11,4 @@ obj/
 logs/
 *.log
 .DS_Store
+TestResults/

@@ -1,0 +1,60 @@
+name: Lab4 tests
+
+# Запускается на каждый push в любую ветку и на каждый pull request в main.
+# Задача lab4-tests назначена обязательной проверкой ветки main: при ошибке сборки,
+# упавшем тесте или покрытии ниже 100% слить pull request нельзя.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lab4-tests:
+    name: lab4-tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lab4
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Восстановление пакетов
+        run: dotnet restore Lab4.sln
+
+      - name: Сборка
+        run: dotnet build Lab4.sln -c Release --no-restore
+
+      - name: Модульные тесты с покрытием
+        run: >
+          dotnet test tests/Users.Tests/Users.Tests.csproj -c Release --no-build
+          --collect:"XPlat Code Coverage" --settings tests/coverlet.runsettings
+          --results-directory TestResults
+          --logger "trx;LogFileName=tests.trx" --logger "console;verbosity=normal"
+
+      - name: Отчёт о покрытии
+        if: always()
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:TestResults/report \
+            -reporttypes:"Html;MarkdownSummaryGithub" -title:"Lab4 Users"
+          cat TestResults/report/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Проверка порога покрытия 100%
+        run: python3 ci/check-coverage.py "TestResults/**/coverage.cobertura.xml"
+
+      - name: Замеры производительности
+        run: dotnet run --project benchmarks/Users.Benchmarks -c Release --no-build
+
+      - name: Сохранить отчёты
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab4-test-results
+          path: |
+            lab4/TestResults/report
+            lab4/TestResults/*.trx

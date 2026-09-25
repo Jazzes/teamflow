@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Бизнес-логика модуля пользователей. Не зависит ни от ASP.NET Core, ни от EF Core -->
+  <PropertyGroup>
+    <RootNamespace>Users.Core</RootNamespace>
+  </PropertyGroup>
+
+</Project>

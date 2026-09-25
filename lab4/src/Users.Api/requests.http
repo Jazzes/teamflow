@@ -1,0 +1,27 @@
+# Запросы для проверки API из VS Code (REST Client) или Rider/Visual Studio.
+# PassHash ниже это SHA-256 от строк Qwerty123! (создание) и NewPass2026 (обновление)
+@host = http://localhost:5080
+
+### Создание пользователя
+POST {{host}}/user
+Content-Type: application/json
+
+{
+  "Login": "example_user",
+  "PassHash": "3875034e17855bac03a3cc9e107b1d28a9b44313d381c3335588525b4e70b55b"
+}
+
+### Получение пользователя
+GET {{host}}/user/1
+
+### Обновление пользователя
+PUT {{host}}/user/1
+Content-Type: application/json
+
+{
+  "Login": "example_user2",
+  "PassHash": "10377176f45381233953769b58d5589eaed878fc05b327bd279873ca316b6d33"
+}
+
+### Удаление пользователя
+DELETE {{host}}/user/1

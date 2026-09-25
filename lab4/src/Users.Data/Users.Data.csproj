@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Хранилище пользователей на EF Core и SQLite -->
+  <PropertyGroup>
+    <RootNamespace>Users.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Users.Core\Users.Core.csproj" />
+  </ItemGroup>
+
+</Project>

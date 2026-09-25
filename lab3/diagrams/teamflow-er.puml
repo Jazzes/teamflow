@@ -1,0 +1,161 @@
+@startuml teamflow-er
+' ER-диаграмма базы данных TeamFlow (нотация IE, «вороньи лапки»)
+skinparam dpi 170
+skinparam defaultFontName "Liberation Sans"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundCorner 4
+skinparam linetype polyline
+skinparam nodesep 55
+skinparam ranksep 75
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #222222
+  HeaderBackgroundColor #E8EEF7
+  ArrowColor #333333
+}
+hide circle
+hide methods
+
+entity "users\nПользователь" as users {
+  * id : uuid <<PK>>
+  --
+  * email : varchar(255) <<UQ>>
+  * full_name : varchar(150)
+  * password_hash : text
+  * created_at : timestamptz
+}
+
+entity "teams\nКоманда" as teams {
+  * id : uuid <<PK>>
+  --
+  * name : varchar(120) <<UQ>>
+  * created_at : timestamptz
+}
+
+entity "team_members\nУчастник команды" as team_members {
+  * team_id : uuid <<PK, FK>>
+  * user_id : uuid <<PK, FK>>
+  --
+  * role : team_role
+  * joined_at : timestamptz
+}
+
+entity "projects\nПроект" as projects {
+  * id : uuid <<PK>>
+  --
+  * team_id : uuid <<FK>>
+  * key : varchar(10) <<UQ>>
+  * name : varchar(150)
+  description : text
+  * created_at : timestamptz
+}
+
+entity "sprints\nСпринт" as sprints {
+  * id : uuid <<PK>>
+  --
+  * project_id : uuid <<FK>>
+  * name : varchar(100)
+  * starts_on : date
+  * ends_on : date
+  * status : sprint_status
+}
+
+entity "tasks\nЗадача" as tasks {
+  * id : uuid <<PK>>
+  --
+  * project_id : uuid <<FK>>
+  sprint_id : uuid <<FK>>
+  parent_id : uuid <<FK>>
+  assignee_id : uuid <<FK>>
+  * reporter_id : uuid <<FK>>
+  * number : integer
+  * title : varchar(200)
+  * status : task_status
+  * priority : task_priority
+  story_points : integer
+  due_date : date
+}
+
+entity "labels\nМетка" as labels {
+  * id : uuid <<PK>>
+  --
+  * project_id : uuid <<FK>>
+  * name : varchar(50)
+  * color : varchar(7)
+}
+
+entity "task_labels\nМетка задачи" as task_labels {
+  * task_id : uuid <<PK, FK>>
+  * label_id : uuid <<PK, FK>>
+}
+
+entity "comments\nКомментарий" as comments {
+  * id : uuid <<PK>>
+  --
+  * task_id : uuid <<FK>>
+  * author_id : uuid <<FK>>
+  * body : text
+  * created_at : timestamptz
+}
+
+entity "attachments\nВложение" as attachments {
+  * id : uuid <<PK>>
+  --
+  * task_id : uuid <<FK>>
+  * uploaded_by : uuid <<FK>>
+  * file_name : varchar(255)
+  * storage_key : text
+  * size_bytes : integer
+}
+
+entity "time_entries\nЗапись трудозатрат" as time_entries {
+  * id : uuid <<PK>>
+  --
+  * task_id : uuid <<FK>>
+  * user_id : uuid <<FK>>
+  * minutes : integer
+  * spent_on : date
+  note : varchar(500)
+}
+
+entity "task_status_changes\nИзменение статуса" as task_status_changes {
+  * id : uuid <<PK>>
+  --
+  * task_id : uuid <<FK>>
+  * changed_by : uuid <<FK>>
+  * from_status : task_status
+  * to_status : task_status
+  * changed_at : timestamptz
+}
+
+' команды и участники
+teams ||--o{ team_members : "1 : 0..*"
+users ||--o{ team_members : "1 : 0..*"
+teams ||--o{ projects : "1 : 0..*"
+
+' проекты, спринты, метки
+projects ||--o{ sprints : "1 : 0..*"
+projects ||--o{ tasks : "1 : 0..*"
+projects ||--o{ labels : "1 : 0..*"
+sprints |o--o{ tasks : "0..1 : 0..*"
+tasks |o--o{ tasks : "родитель\n0..1 : 0..*"
+
+' люди и задачи
+users |o--o{ tasks : "исполнитель\n0..1 : 0..*"
+users ||--o{ tasks : "автор\n1 : 0..*"
+
+' метки задач (многие ко многим)
+tasks ||--o{ task_labels : "1 : 0..*"
+labels ||--o{ task_labels : "1 : 0..*"
+
+' журнал работы по задаче
+tasks ||--o{ comments : "1 : 0..*"
+tasks ||--o{ attachments : "1 : 0..*"
+tasks ||--o{ time_entries : "1 : 0..*"
+tasks ||--o{ task_status_changes : "1 : 0..*"
+users ||--o{ comments : "1 : 0..*"
+users ||--o{ attachments : "1 : 0..*"
+users ||--o{ time_entries : "1 : 0..*"
+users ||--o{ task_status_changes : "1 : 0..*"
+@enduml

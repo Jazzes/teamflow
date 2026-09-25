@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Замеры производительности горячих мест модуля пользователей -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Users.Benchmarks</RootNamespace>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Users.Core\Users.Core.csproj" />
+    <ProjectReference Include="..\..\src\Users.Data\Users.Data.csproj" />
+  </ItemGroup>
+
+</Project>

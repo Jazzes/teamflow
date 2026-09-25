@@ -1,0 +1,5 @@
+digraph G {
+ graph [fontname="Liberation Sans", dpi=200];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ Users [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3" BGCOLOR="#E8EEF7"><B>Users</B></TD></TR><TR><TD ALIGN="LEFT">PK</TD><TD ALIGN="LEFT" PORT="id">Id</TD><TD ALIGN="LEFT">INTEGER, AUTOINCREMENT</TD></TR><TR><TD ALIGN="LEFT">UQ</TD><TD ALIGN="LEFT" PORT="l">Login</TD><TD ALIGN="LEFT">TEXT COLLATE NOCASE NOT NULL, UNIQUE</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="p">PassHash</TD><TD ALIGN="LEFT">TEXT NOT NULL</TD></TR></TABLE>>];
+}

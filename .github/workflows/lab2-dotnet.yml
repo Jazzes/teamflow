@@ -1,0 +1,38 @@
+name: Lab2 (.NET)
+
+on:
+  push:
+    paths:
+      - "lab2/**"
+      - ".github/workflows/lab2-dotnet.yml"
+  pull_request:
+    paths:
+      - "lab2/**"
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lab2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Сборка решения
+        run: dotnet build Lab2.sln -c Release
+
+      - name: Часть 1. Интерфейсы
+        run: dotnet run --project src/Lab2.Part1.Interfaces -c Release --no-build
+
+      - name: Часть 2. Репозиторий и Unit of Work
+        run: dotnet run --project src/Lab2.Part2.RepositoryDemo -c Release --no-build
+
+      - name: Часть 3. REST API и клиент
+        run: |
+          dotnet run --project src/Lab2.Part3.UsersApi -c Release --no-build &
+          for i in $(seq 1 30); do curl -s http://localhost:5080/ >/dev/null && break; sleep 1; done
+          dotnet run --project src/Lab2.Part3.Client -c Release --no-build

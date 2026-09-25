@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Библиотека слоя доступа к данным. Её можно подключить к любому другому проекту через ProjectReference -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Lab2.DataAccess</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+  </ItemGroup>
+
+</Project>

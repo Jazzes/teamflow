@@ -1,0 +1,14 @@
+digraph G {
+ graph [fontname="Liberation Sans", rankdir=LR, nodesep=0.4, ranksep=0.55, dpi=200];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ edge [fontname="Liberation Sans", fontsize=9];
+ C [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#F3F3F3"><TR><TD><B>Клиент</B><BR/><FONT POINT-SIZE="9">Lab2.Part3.Client, curl,<BR/>requests.http<BR/>SHA-256(пароль)</FONT></TD></TR></TABLE>>];
+ E [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#E8EEF7"><TR><TD><B>UserEndpoints</B><BR/><FONT POINT-SIZE="9">Minimal API<BR/>POST/GET/PUT/DELETE /user</FONT></TD></TR></TABLE>>];
+ V [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#FFFFFF"><TR><TD><B>UserRequestValidator</B><BR/><FONT POINT-SIZE="9">логин, формат хеша</FONT></TD></TR></TABLE>>];
+ P [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#FFFFFF"><TR><TD><B>Pbkdf2PasswordHashProtector</B><BR/><FONT POINT-SIZE="9">соль + PBKDF2</FONT></TD></TR></TABLE>>];
+ R [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#E8EEF7"><TR><TD><B>IUserRepository</B><BR/><FONT POINT-SIZE="9">UserRepository (async)</FONT></TD></TR></TABLE>>];
+ D [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" BGCOLOR="#FFF4E0"><TR><TD><B>UsersDbContext</B><BR/><FONT POINT-SIZE="9">EF Core</FONT></TD></TR></TABLE>>];
+ DB [shape=cylinder, style=filled, fillcolor="#FFF4E0", label="SQLite\nusers.db", fontname="Liberation Sans"];
+ C -> E [label="HTTP + JSON", dir=both]; E -> V; E -> P; E -> R; R -> D; D -> DB [label="параметризованный SQL"];
+ { rank=same; V; P; }
+}

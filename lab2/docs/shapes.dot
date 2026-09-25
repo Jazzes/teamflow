@@ -1,0 +1,26 @@
+digraph G {
+ graph [fontname="Liberation Sans", rankdir=BT, nodesep=0.5, ranksep=0.7, dpi=200, bgcolor="white"];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ edge [fontname="Liberation Sans", fontsize=10];
+ IMovable [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IMovable</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Move(x: int, y: int): void</TD></TR></TABLE>>];
+ IDrawable [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IDrawable</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Draw(): void</TD></TR></TABLE>>];
+ IShape [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IShape</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Name: string<BR/>+ GetArea(): double<BR/>+ GetPerimeter(): double</TD></TR></TABLE>>];
+ I3DShape [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>I3DShape</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ GetVolume(): double</TD></TR></TABLE>>];
+ Point [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Point</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ X: int<BR/>+ Y: int</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Move(x, y)</TD></TR></TABLE>>];
+ Circle [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Circle</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Center: Point<BR/>+ Radius: double</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Draw()<BR/>+ GetArea(), GetPerimeter()<BR/>+ Move(x, y)</TD></TR></TABLE>>];
+ Rectangle [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Rectangle</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ TopLeft: Point<BR/>+ Width, Height: double</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Draw()<BR/>+ GetArea(), GetPerimeter()<BR/>+ Move(x, y)</TD></TR></TABLE>>];
+ Cube [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Cube</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Edge: double</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ GetArea(), GetPerimeter()<BR/>+ GetVolume()</TD></TR></TABLE>>];
+ ShapeService [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#F3F3F3"><B><FONT POINT-SIZE="9">«static»</FONT><BR/>ShapeService</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ DrawAll(shapes: List&lt;IDrawable&gt;)<BR/>+ PrintShapeInfo(shape: IShape)</TD></TR></TABLE>>];
+ { rank=same; IMovable; IDrawable; IShape; }
+ Point -> IMovable [style=dashed, arrowhead=onormal];
+ Circle -> IMovable [style=dashed, arrowhead=onormal];
+ Circle -> IDrawable [style=dashed, arrowhead=onormal];
+ Circle -> IShape [style=dashed, arrowhead=onormal];
+ Rectangle -> IMovable [style=dashed, arrowhead=onormal];
+ Rectangle -> IDrawable [style=dashed, arrowhead=onormal];
+ Rectangle -> IShape [style=dashed, arrowhead=onormal];
+ I3DShape -> IShape [arrowhead=onormal];
+ Cube -> I3DShape [style=dashed, arrowhead=onormal];
+ ShapeService -> IDrawable [style=dotted, arrowhead=vee, label=" использует"];
+ ShapeService -> IShape [style=dotted, arrowhead=vee];
+}

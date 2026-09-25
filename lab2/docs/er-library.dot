@@ -1,0 +1,8 @@
+digraph G {
+ graph [fontname="Liberation Sans", rankdir=LR, nodesep=0.6, ranksep=1.4, dpi=200];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ edge [fontname="Liberation Sans", fontsize=10];
+ Authors [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3" BGCOLOR="#E8EEF7"><B>Authors</B></TD></TR><TR><TD ALIGN="LEFT">PK</TD><TD ALIGN="LEFT" PORT="id">Id</TD><TD ALIGN="LEFT">INTEGER, AUTOINCREMENT</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="fn">FullName</TD><TD ALIGN="LEFT">TEXT NOT NULL, INDEX</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="by">BirthYear</TD><TD ALIGN="LEFT">INTEGER NOT NULL</TD></TR></TABLE>>];
+ Books [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5"><TR><TD COLSPAN="3" BGCOLOR="#E8EEF7"><B>Books</B></TD></TR><TR><TD ALIGN="LEFT">PK</TD><TD ALIGN="LEFT" PORT="id">Id</TD><TD ALIGN="LEFT">INTEGER, AUTOINCREMENT</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="t">Title</TD><TD ALIGN="LEFT">TEXT NOT NULL, INDEX</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="py">PublishYear</TD><TD ALIGN="LEFT">INTEGER NOT NULL</TD></TR><TR><TD ALIGN="LEFT"></TD><TD ALIGN="LEFT" PORT="p">Price</TD><TD ALIGN="LEFT">TEXT NOT NULL (decimal)</TD></TR><TR><TD ALIGN="LEFT">FK</TD><TD ALIGN="LEFT" PORT="aid">AuthorId</TD><TD ALIGN="LEFT">INTEGER NOT NULL, INDEX</TD></TR></TABLE>>];
+ Books:aid -> Authors:id [arrowhead=teetee, arrowtail=crowodot, dir=both, label="  N : 1  (ON DELETE RESTRICT)  "];
+}

@@ -1,0 +1,16 @@
+digraph G {
+ graph [fontname="Liberation Sans", rankdir=BT, nodesep=0.5, ranksep=0.7, dpi=200, bgcolor="white"];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ edge [fontname="Liberation Sans", fontsize=10];
+ IPayable [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IPayable</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Title: string<BR/>+ Pay(amount: decimal): bool</TD></TR></TABLE>>];
+ CreditCard [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>CreditCard</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">- _maskedNumber: string<BR/>- _availableLimit: decimal</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Pay(amount)</TD></TR></TABLE>>];
+ Cash [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Cash</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">- _inWallet: decimal</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Pay(amount)</TD></TR></TABLE>>];
+ PP [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#F3F3F3"><B><FONT POINT-SIZE="9">«static»</FONT><BR/>PaymentProcessor</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ ProcessPayment(method: IPayable, amount)</TD></TR></TABLE>>];
+ ILogger [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>ILogger</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Log(message: string)</TD></TR></TABLE>>];
+ ConsoleLogger [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>ConsoleLogger</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Log(message)</TD></TR></TABLE>>];
+ FileLogger [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>FileLogger</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ FilePath: string</TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Log(message)</TD></TR></TABLE>>];
+ Worker [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#F3F3F3"><B><FONT POINT-SIZE="9">«static»</FONT><BR/>Worker</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ DoWork(logger: ILogger)</TD></TR></TABLE>>];
+ CreditCard -> IPayable [style=dashed, arrowhead=onormal]; Cash -> IPayable [style=dashed, arrowhead=onormal]; ConsoleLogger -> ILogger [style=dashed, arrowhead=onormal]; FileLogger -> ILogger [style=dashed, arrowhead=onormal];
+ PP -> IPayable [style=dotted, arrowhead=vee, label=" использует"]; Worker -> ILogger [style=dotted, arrowhead=vee, label=" использует"];
+ { rank=same; IPayable; ILogger; }
+}

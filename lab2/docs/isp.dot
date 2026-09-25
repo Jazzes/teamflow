@@ -1,0 +1,20 @@
+digraph G {
+ graph [fontname="Liberation Sans", rankdir=BT, nodesep=0.35, ranksep=0.6, dpi=200, compound=true];
+ node [shape=plaintext, fontname="Liberation Sans", fontsize=11];
+ edge [fontname="Liberation Sans", fontsize=10];
+ subgraph cluster_before { label=<<B>До: «толстый» интерфейс</B>>; style=rounded; color="#999999";
+  IDevice [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IDevice</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Print(document)<BR/>+ Scan(document)<BR/>+ Fax(document, phoneNumber)</TD></TR></TABLE>>];
+  BPrinter [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Printer</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Print(document)<BR/><FONT COLOR='#B00000'>+ Scan(document) { }</FONT><BR/><FONT COLOR='#B00000'>+ Fax(document, phone) { }</FONT></TD></TR></TABLE>>];
+  BScanner [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Scanner</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT"><FONT COLOR='#B00000'>+ Print(document) { }</FONT><BR/>+ Scan(document)<BR/><FONT COLOR='#B00000'>+ Fax(document, phone) { }</FONT></TD></TR></TABLE>>];
+  BPrinter -> IDevice [style=dashed, arrowhead=onormal]; BScanner -> IDevice [style=dashed, arrowhead=onormal];
+ }
+ subgraph cluster_after { label=<<B>После: разделённые интерфейсы</B>>; style=rounded; color="#999999";
+  IPrinter [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IPrinter</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Print(document)</TD></TR></TABLE>>];
+  IScanner [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IScanner</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Scan(document)</TD></TR></TABLE>>];
+  IFax [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B><FONT POINT-SIZE="9">«interface»</FONT><BR/>IFax</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ SendFax(document, phoneNumber)</TD></TR></TABLE>>];
+  APrinter [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Printer</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Print(document)</TD></TR></TABLE>>];
+  AScanner [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>Scanner</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Scan(document)</TD></TR></TABLE>>];
+  MFU [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FFFFFF"><TR><TD BGCOLOR="#E8EEF7"><B>MultifunctionDevice</B></TD></TR><TR><TD ALIGN="LEFT" BALIGN="LEFT">+ Print(document)<BR/>+ Scan(document)<BR/>+ SendFax(document, phone)</TD></TR></TABLE>>];
+  APrinter -> IPrinter [style=dashed, arrowhead=onormal]; AScanner -> IScanner [style=dashed, arrowhead=onormal]; MFU -> IPrinter [style=dashed, arrowhead=onormal]; MFU -> IScanner [style=dashed, arrowhead=onormal]; MFU -> IFax [style=dashed, arrowhead=onormal];
+ }
+}

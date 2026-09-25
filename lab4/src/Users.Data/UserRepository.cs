@@ -61,11 +61,15 @@ public class UserRepository : IUserRepository
         {
             await _db.SaveChangesAsync(cancellationToken);
         }
-        catch (DbUpdateException ex) when (ex.InnerException is SqliteException { SqliteExtendedErrorCode: SqliteConstraintUnique })
+        catch (DbUpdateException ex) when (IsUniqueViolation(ex))
         {
             // Неудачную запись убираем из трекера, иначе она уйдёт в базу при следующем сохранении
             _db.Entry(user).State = EntityState.Detached;
             throw new DuplicateLoginException(user.Login, ex);
         }
     }
+
+    /// <summary>Нарушено ли уникальное ограничение (например, индекс по логину).</summary>
+    internal static bool IsUniqueViolation(DbUpdateException ex)
+        => ex.InnerException is SqliteException { SqliteExtendedErrorCode: SqliteConstraintUnique };
 }

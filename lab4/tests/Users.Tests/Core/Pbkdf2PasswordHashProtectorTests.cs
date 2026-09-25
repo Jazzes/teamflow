@@ -42,7 +42,7 @@ public class Pbkdf2PasswordHashProtectorTests
     [Test]
     public void Protect_EmptyHash_Throws()
     {
-        TestDelegate act = () => _protector.Protect("");
+        Action act = () => _protector.Protect("");
 
         Assert.Throws<ArgumentException>(act);
     }
@@ -97,7 +97,7 @@ public class Pbkdf2OptionsTests
     [TestCase(1000, 16, 15)]
     public void Constructor_UnsafeValues_Throw(int iterations, int saltSize, int hashSize)
     {
-        TestDelegate act = () => _ = new Pbkdf2Options(iterations, saltSize, hashSize);
+        Action act = () => _ = new Pbkdf2Options(iterations, saltSize, hashSize);
 
         Assert.Throws<ArgumentOutOfRangeException>(act);
     }
@@ -122,7 +122,7 @@ public class RandomSaltGeneratorTests
     [TestCase(-1)]
     public void Generate_NonPositiveSize_Throws(int size)
     {
-        TestDelegate act = () => _generator.Generate(size);
+        Action act = () => _generator.Generate(size);
 
         Assert.Throws<ArgumentOutOfRangeException>(act);
     }

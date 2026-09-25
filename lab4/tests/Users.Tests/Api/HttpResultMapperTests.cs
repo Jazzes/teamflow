@@ -64,7 +64,7 @@ public class HttpResultMapperTests
     {
         var weird = new ServiceResult<UserResponse>((ServiceStatus)999, "?", null);
 
-        TestDelegate act = () => HttpResultMapper.ToHttp(weird);
+        Action act = () => HttpResultMapper.ToHttp(weird);
 
         Assert.Throws<ArgumentOutOfRangeException>(act);
     }

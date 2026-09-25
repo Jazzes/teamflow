@@ -125,7 +125,7 @@ public class UserRepositoryTests
         await AddUser("alice");
         var duplicate = new User { Login = "ALICE", PassHash = "h" };
 
-        AsyncTestDelegate act = () => _repo.AddAsync(duplicate);
+        Func<Task> act = () => _repo.AddAsync(duplicate);
 
         var ex = Assert.ThrowsAsync<DuplicateLoginException>(act);
 
@@ -142,7 +142,7 @@ public class UserRepositoryTests
         var bob = await AddUser("bob");
         bob.Login = "alice";
 
-        AsyncTestDelegate act = () => _repo.UpdateAsync(bob);
+        Func<Task> act = () => _repo.UpdateAsync(bob);
 
         Assert.ThrowsAsync<DuplicateLoginException>(act);
     }
@@ -153,7 +153,7 @@ public class UserRepositoryTests
         // NOT NULL тоже ошибка SQLite, но не про уникальность: она должна дойти до вызывающего кода как есть
         var broken = new User { Login = null!, PassHash = "h" };
 
-        AsyncTestDelegate act = () => _repo.AddAsync(broken);
+        Func<Task> act = () => _repo.AddAsync(broken);
 
         Assert.ThrowsAsync<DbUpdateException>(act);
     }

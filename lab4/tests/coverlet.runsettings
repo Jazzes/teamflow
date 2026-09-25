@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Настройки coverlet.collector для dotnet test --collect и для IDE (Rider, Visual Studio, VS Code) -->
+<!-- Настройки coverlet.collector для запуска тестов с флагом collect и для IDE (Rider, Visual Studio, VS Code) -->
 <RunSettings>
   <DataCollectionRunSettings>
     <DataCollectors>

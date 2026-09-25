@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Lab2.Part3.Client</RootNamespace>
+  </PropertyGroup>
+
+</Project>

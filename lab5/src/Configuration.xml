@@ -245,6 +245,8 @@
 		</Properties>
 		<ChildObjects>
 			<Language>Русский</Language>
+			<Subsystem>Клиенты</Subsystem>
+			<Catalog>Клиенты</Catalog>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>

@@ -56,8 +56,9 @@
 			<InputByString>
 				<xr:Field>Catalog.Клиенты.StandardAttribute.Description</xr:Field>
 				<xr:Field>Catalog.Клиенты.StandardAttribute.Code</xr:Field>
+				<xr:Field>Catalog.Клиенты.Attribute.ФИО</xr:Field>
 			</InputByString>
-			<SearchStringModeOnInputByString>Begin</SearchStringModeOnInputByString>
+			<SearchStringModeOnInputByString>AnyPart</SearchStringModeOnInputByString>
 			<FullTextSearchOnInputByString>DontUse</FullTextSearchOnInputByString>
 			<ChoiceDataGetModeOnInputByString>Directly</ChoiceDataGetModeOnInputByString>
 			<DefaultObjectForm/>

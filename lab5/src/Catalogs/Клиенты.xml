@@ -56,8 +56,9 @@
 			<InputByString>
 				<xr:Field>Catalog.Клиенты.StandardAttribute.Description</xr:Field>
 				<xr:Field>Catalog.Клиенты.StandardAttribute.Code</xr:Field>
+				<xr:Field>Catalog.Клиенты.Attribute.ФИО</xr:Field>
 			</InputByString>
-			<SearchStringModeOnInputByString>Begin</SearchStringModeOnInputByString>
+			<SearchStringModeOnInputByString>AnyPart</SearchStringModeOnInputByString>
 			<FullTextSearchOnInputByString>DontUse</FullTextSearchOnInputByString>
 			<ChoiceDataGetModeOnInputByString>Directly</ChoiceDataGetModeOnInputByString>
 			<DefaultObjectForm/>
@@ -126,7 +127,7 @@
 					<LinkByType/>
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
-					<Indexing>DontIndex</Indexing>
+					<Indexing>Index</Indexing>
 					<FullTextSearch>Use</FullTextSearch>
 					<DataHistory>Use</DataHistory>
 				</Properties>

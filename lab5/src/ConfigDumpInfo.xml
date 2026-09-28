@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.20">
 	<ConfigVersions>
-		<Metadata name="Catalog.Клиенты" id="aade5933-5a4f-4300-ae7f-fbcf0a707ffa" configVersion="15a051fc9b8ca34eba1941a930761ce900000000">
+		<Metadata name="Catalog.Клиенты" id="aade5933-5a4f-4300-ae7f-fbcf0a707ffa" configVersion="041f42c663cb1248bf07b4ba8e158ec700000000">
 			<Metadata name="Catalog.Клиенты.Attribute.EMail" id="393e3e54-19b7-4b29-ab96-7e8bf429a089"/>
 			<Metadata name="Catalog.Клиенты.Attribute.ФИО" id="9fc68dc4-92e7-489f-a164-24dfe205e3bb"/>
 			<Metadata name="Catalog.Клиенты.Attribute.Телефон" id="b87586bc-4e3e-452f-ba4f-f75c707143c9"/>
 		</Metadata>
-		<Metadata name="Catalog.Клиенты.Form.ФормаСписка" id="376de2a5-b406-45f3-84d2-45e8cd57225a" configVersion="0744546188685547823ecff1f0ae28b800000000"/>
-		<Metadata name="Catalog.Клиенты.Form.ФормаСписка.Form" id="376de2a5-b406-45f3-84d2-45e8cd57225a.0" configVersion="628edda93111364eba2edd976315d54c00000000"/>
-		<Metadata name="Configuration.Конфигурация" id="80f66c90-e646-4b4b-8465-51b197290591" configVersion="b4630eb89b49234f82e6e8c480c5869400000000"/>
-		<Metadata name="Language.Русский" id="96224b46-0ceb-4442-b0cd-52f10353536d" configVersion="bc2ddee5445ca643b827364a80dcbff600000000"/>
-		<Metadata name="Subsystem.Клиенты" id="4e257f10-9e96-495f-a0df-0213791a9700" configVersion="f5c8812fbb101b478be3999a13cea23b00000000"/>
+		<Metadata name="Catalog.Клиенты.Form.ФормаСписка" id="376de2a5-b406-45f3-84d2-45e8cd57225a" configVersion="1819972e4dd29e4596dfd8d74cdf48f500000000"/>
+		<Metadata name="Catalog.Клиенты.Form.ФормаСписка.Form" id="376de2a5-b406-45f3-84d2-45e8cd57225a.0" configVersion="70366507e8836546a98727e7451b33f900000000"/>
+		<Metadata name="Configuration.Конфигурация" id="80f66c90-e646-4b4b-8465-51b197290591" configVersion="1d18cb73d0f6024a835f531b453fc7eb00000000"/>
+		<Metadata name="Language.Русский" id="96224b46-0ceb-4442-b0cd-52f10353536d" configVersion="a392176244f77042b3056fdea33fd2b900000000"/>
+		<Metadata name="Subsystem.Клиенты" id="4e257f10-9e96-495f-a0df-0213791a9700" configVersion="8032d7c83b5ac648a3392103048c766100000000"/>
 	</ConfigVersions>
 </ConfigDumpInfo>
